@@ -3,6 +3,11 @@ import React from "react";
 export default function Pizza(props) {
     const { values, submit, change, disabled, errors } = props;
     
+    const onSubmit = (event) => {
+        event.preventDefault();
+        submit();
+    }
+    
     const onChange = (event) => {
         const { name, value, type, checked } = event.target;
         const valueToUse = type === 'checkbox' ? checked : value;
@@ -10,9 +15,15 @@ export default function Pizza(props) {
     };
     
     return (
-        <div className='Form'>
+        <div className='Form' onSubmit={onSubmit}>
             <h2>Mmmmm Pizza!</h2>
             <form>
+                <div className='errors'>
+                    <div>{errors.name}</div>
+                    <div>{errors.size}</div>
+                    <div>{errors.toppings}</div>
+                    <div>{errors.instruct}</div>
+                </div>
                 <div className='text-field'>    
                     <label>Full Name
                         <input
@@ -79,6 +90,9 @@ export default function Pizza(props) {
                             onChange={onChange}
                         ></input>
                     </label>
+                </div>
+                <div className='submit-button'>
+                    <button disabled={disabled}>Place your order</button>
                 </div>
             </form>
         </div>

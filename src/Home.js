@@ -13,7 +13,6 @@ export default function Home() {
     return (
         <div>
             <h2>Homepage</h2>
-            <img className="home-img" src="https://unsplash.com/photos/OklpRh8-Sns" alt="pizza picture" />
             <button onClick={pizzaBuilder} className='button-to-builder'> Order Pizza </button>
         </div>
     )
