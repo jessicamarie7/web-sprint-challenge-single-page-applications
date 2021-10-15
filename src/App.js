@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import Form from "./Form"
 
+const initialFormValues = {
+  name: '',
+  size: '',
+  pepperoni: false,
+  bacon: false,
+  sausage: false,
+  onions: false,
+  instructions: ''
+}
 
 
 const App = () => {
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+
   return (
     <BrowserRouter>
       <h1>Lambda Eats</h1>
