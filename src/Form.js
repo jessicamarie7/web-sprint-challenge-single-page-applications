@@ -6,13 +6,24 @@ export default function Pizza(props) {
     const onChange = (event) => {
         const { name, value, type, checked } = event.target;
         const valueToUse = type ==='checkbox' ? checked : value;
-        onChange(name, valueToUse);
+        change(name, valueToUse);
     };
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+        submit();
+    }
+
     return (
-        <div className='pizza-form'>
+        <div className='pizza-form' onSubmit={onSubmit}>
             <h4>What do you want on your Tombstone?</h4>
             <form>
+                <div className='errors'>
+                    <div>{errors.name}</div>
+                    <div>{errors.size}</div>
+                    <div>{errors.toppings}</div>
+                    <div>{errors.instructions}</div>
+                </div>
                 <div className='selections'>
                     <div className='name-input'>
                         <label> Your Full Name
@@ -20,14 +31,14 @@ export default function Pizza(props) {
                                 type='text'
                                 name='fullName'
                                 value={values.name}
-                                onChange={onChange}
+                                change={onChange}
                                 minLength='2'
                             />
                         </label>
                     </div>
                     <div className='size-dropdown'>
                         <label>Pizza Size
-                            <select onChange={onChange} value={values.size} name='size'>
+                            <select change={onChange} value={values.size} name='size'>
                                 <option value=''>~~Select a pizza size~~</option>
                                 <option value='small'>Small</option>
                                 <option value='medium'>Medium</option>
@@ -42,7 +53,7 @@ export default function Pizza(props) {
                                 type='checkbox'
                                 name='pepperoni'
                                 checked={values.pepperoni}
-                                onChange={onChange}
+                                change={onChange}
                             />
                         </label>
                         <label>Bacon
@@ -50,7 +61,7 @@ export default function Pizza(props) {
                                 type='checkbox'
                                 name='bacon'
                                 checked={values.bacon}
-                                onChange={onChange}
+                                change={onChange}
                             />
                         </label>
                         <label>Sausage
@@ -58,7 +69,7 @@ export default function Pizza(props) {
                                 type='checkbox'
                                 name='sausage'
                                 checked={values.sausage}
-                                onChange={onChange}
+                                change={onChange}
                             />
                         </label>
                         <label>Onions
@@ -66,7 +77,7 @@ export default function Pizza(props) {
                                 type='checkbox'
                                 name='onions'
                                 checked={values.onions}
-                                onChange={onChange}
+                                change={onChange}
                             />
                         </label>
                     </div>
@@ -76,12 +87,12 @@ export default function Pizza(props) {
                                 type='text'
                                 name='instructions'
                                 value={values.instructions}
-                                onChange={onChange}
+                                change={onChange}
                             />
                         </label>
                     </div>
                     <div className='submit-btn'>
-                        <button>Order Now</button>
+                        <button disabled={disabled}>Order Now</button>
                     </div>
                 </div>
             </form>
