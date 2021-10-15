@@ -17,6 +17,10 @@ const App = () => {
 
   const [formValues, setFormValues] = useState(initialFormValues);
 
+  const inputChange = (name, value) => {
+    setFormValues({...formValues, [name]: value})
+  }
+
   return (
     <BrowserRouter>
       <h1>Lambda Eats</h1>
@@ -25,7 +29,9 @@ const App = () => {
       <Link to='/pizza'> Build Your Own Pizza </Link>
       <Route exact path='/'></Route>
       <Route path='/pizza'>
-        <Form />
+        <Form 
+        values={inputChange}
+        />
       </Route>
     </BrowserRouter>
   );
